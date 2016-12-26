@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\Table(name="divisions")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DivisionRepository")
+ * @ORM\DiscriminatorColumn(name="city", type="integer")
+ * @ORM\DiscriminatorMap({
+ *     0 = "Division",
+ *     1 = "City"
+ * })
  */
 class Division
 {
@@ -29,18 +34,10 @@ class Division
      */
     protected $name;
 
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="city", type="boolean")
-     */
-    protected $city = false;
 
-
-    public function __construct(string $name, bool $city = false)
+    public function __construct(string $name)
     {
         $this->name = $name;
-        $this->city = $city;
     }
 
 
@@ -76,30 +73,6 @@ class Division
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set city
-     *
-     * @param boolean $city
-     *
-     * @return Division
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return bool
-     */
-    public function getCity()
-    {
-        return $this->city;
     }
 }
 

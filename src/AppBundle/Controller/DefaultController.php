@@ -7,7 +7,6 @@ use AppBundle\Entity\Division;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -16,12 +15,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-//        $this->getDoctrine()->getManager()->persist(new City("Paris"));
-//        $this->getDoctrine()->getManager()->persist(new Division("France"));
-//        $this->getDoctrine()->getManager()->persist(new Division("California"));
-//        $this->getDoctrine()->getManager()->persist(new City("San Francisco"));
-//
-//        $this->getDoctrine()->getManager()->flush();
+        $this->getDoctrine()->getManager()->persist(new City("Paris"));
+        $this->getDoctrine()->getManager()->persist(new Division("France"));
+        $this->getDoctrine()->getManager()->persist(new Division("California"));
+        $this->getDoctrine()->getManager()->persist(new City("San Francisco"));
+
+        $this->getDoctrine()->getManager()->flush();
 
         $divisions = $this->getDoctrine()->getRepository(Division::class)->findAll();
         dump($divisions);
