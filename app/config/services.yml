@@ -1,0 +1,10 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+   app.listener.doctrine.discriminator:
+        class: AppBundle\EventListener\Doctrine\EntityDiscriminatorListener
+        tags:
+            - { name: doctrine.event_listener, event: loadClassMetadata }
